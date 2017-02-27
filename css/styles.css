@@ -9,8 +9,8 @@ p {
 #indicator {
     position: absolute;
     top: calc(50% - 75px);
-    left: calc(50% - 150px);
-    width: 300px;
+    left: calc(50% - 160px);
+    width: 320px;
     height: 150px;
     flex-direction: column;
 
@@ -37,10 +37,11 @@ p {
 
 .bar-box {
     background: #fff;
-    padding: 10px 30px;
+    padding: 10px 20px;
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
     border-radius: 7px;
+    min-height: 60px;
 }
 
 .bar-box > .flex {
@@ -58,7 +59,46 @@ p {
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
+.full-bar {
+    background: #00A910;
+}
 
 .target span {
+    font-size: 13px;
+    border-bottom: 1px solid rgba(124, 124, 124, 0.5);
+}
+.progress-bar {
+    width: 100%;
+    padding: 3px 0 3px 3px;
+    background: #ccc;
+    margin-left: 20px;
+    position: relative;
+}
+.current-status {
+    margin-top: 20px;
+    display: none;
     font-size: 14px;
+}
+.current-status i {
+    margin-right: 5px;
+    color: #60ABF8;
+}
+#bar {
+    height: 5px;
+    width: 0;
+    background: #60ABF8;
+}
+#label {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    margin-left: -11px;
+    font-size: 13px;
+    opacity: 0;
+}
+#label.show {
+    opacity: 1;
+    transition: opacity ease-in-out 0.3s;
 }

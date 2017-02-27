@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Test App from Ivanov IP</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -14,15 +15,23 @@
         <div class="bar-box">
             <div class="flex">
                 <p>Reached:</p>
-                <div class="progress-bar"></div>
+                <div class="progress-bar">
+                    <div id="bar"></div>
+                    <div id="label" class="flex"><i class="fa fa-caret-up" aria-hidden="true"></i><span></span></div>
+                </div>
                 <div class="flex target">
                     <div><span>Target</span></div>
                     <div>$15</div>
                 </div>
             </div>
-            <div class="current-status"></div>
+            <div class="current-status"><i class="fa fa-info-circle" aria-hidden="true"></i>You need <span></span> more
+                to reach your target
+            </div>
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="scripts/bar.js"></script>
 </body>
 </html>
