@@ -30,7 +30,7 @@ p {
     -moz-border-radius: 0 0 7px 7px;
     border-radius: 0 0 7px 7px;
     border: 1px solid #555;
-    padding: 10px 15px;
+    padding: 10px 10px;
     border-top: none;
     background: #eee;
 }

@@ -1,31 +1,43 @@
 (function($){
+    var $bar = $('#bar');
+    var $target = $('.target');
+    var $currentStatus = $('.current-status');
+    var $currentStatusValue = $('.current-status span');
+    var $label = $('#label');
+    var $labelValue = $('#label span');
+    var currentUSD = 0;
+    var targetUSD = 15;
+
     $.getJSON('http://alex.devel.softservice.org/testapi/', function(data){
-        var balanceUSD = data['balance_usd'];
-        var $bar = $('#bar');
-        var $target = $('.target');
-        var $currentStatusBox = $('.current-status');
-        var $currentStatus = $('.current-status span');
-        var $label = $('#label');
-        var currentUSD = 0;
-        var targetUsd = 15;
+        // get initialValue
+        var initialValue = data['balance_usd'];
         var interval = setInterval(step, 2000);
         function step(){
-            if (currentUSD >= balanceUSD) {
+            // When bar filled
+            if (currentUSD >= initialValue) {
                 clearInterval(interval);
-                if ( balanceUSD >= targetUsd ) {
+                // If we have initial value more then our target
+                if ( initialValue >= targetUSD ) {
+                    // Change background of target and add text of success
                     $target.addClass('full-bar');
-                    $currentStatusBox.text('We get enough! ($' + balanceUSD + ')');
-                } else {
-                    $currentStatus.text('$' + Math.round(targetUsd - currentUSD));
+                    $currentStatus.text('We get enough! ($' + initialValue + ')')
                 }
-                if (balanceUSD < targetUsd) {
-                    $('#label span').text('$' + balanceUSD);
-                    $label.addClass('show');
+                // Change status text to how many we still need
+                else {
+                    $currentStatusValue.text('$' + Math.round(targetUSD - currentUSD));
                 }
-                $currentStatusBox.show();
-            } else {
+                // add label of current initial value under bar
+                if (initialValue < targetUSD) {
+                    $labelValue.text('$' + Math.round(initialValue));
+                    $label.addClass('show')
+                }
+                // show status text
+                $currentStatus.show();
+            }
+            // Bar progression
+            else {
                 currentUSD += 0.2;
-                var barWidth = currentUSD * (100/targetUsd);
+                var barWidth = currentUSD * (100/targetUSD);
                 if (barWidth >= 100) {
                     barWidth = 100
                 }
@@ -34,4 +46,5 @@
             }
         }
    });
+
 })(jQuery);
