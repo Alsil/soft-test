@@ -7,6 +7,15 @@
     var $labelValue = $('#label span');
     var currentValue = 0;
     var targetValue = 15;
+    var barProgression = function(){
+        currentValue += 0.2;
+        var barWidth = currentValue * (100/targetValue);
+        if (barWidth >= 100) {
+            barWidth = 100
+        }
+        $bar.css('width', barWidth + '%');
+        $label.css('left', barWidth + '%')
+    };
 
     $.getJSON('http://alex.devel.softservice.org/testapi/', function(data){
         // get initialValue
@@ -36,13 +45,7 @@
             }
             // Bar progression
             else {
-                currentValue += 0.2;
-                var barWidth = currentValue * (100/targetValue);
-                if (barWidth >= 100) {
-                    barWidth = 100
-                }
-                $bar.css('width', barWidth + '%');
-                $label.css('left', barWidth + '%');
+                barProgression()
             }
         }
    });
